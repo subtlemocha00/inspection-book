@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const SignIn = ({ handleLogin, setIsMember }) => {
+const SignIn = ({ handleLogin, setIsMember, error, success }) => {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('')
 
@@ -12,11 +12,14 @@ const SignIn = ({ handleLogin, setIsMember }) => {
             setPassword(target.value);
         }
     }
-    const signUpClick = (username, password) => {
+    const signInClick = (username, password) => {
         handleLogin(username, password);
         setUserName('')
         setPassword('')
     }
+
+    useEffect(() => {
+    }, [error, success]);
 
     return (
         <div className="container col-11 col-md-8 col-lg-6 border bg-light my-5">
@@ -31,8 +34,14 @@ const SignIn = ({ handleLogin, setIsMember }) => {
                     <input id="password" className="col-9" type="text" name="password" placeholder="Password..." value={password} onChange={(e) => handleChange(e.target)}></input>
                 </div>
                 <div className="row justify-content-center my-3">
-                    <button type="button" className="btn btn-dark w-auto" onClick={() => signUpClick(username, password)}>Sign In</button>
+                    <button type="button" className="btn btn-dark w-auto" onClick={() => signInClick(username, password)}>Sign In</button>
                 </div>
+                {error &&
+                    <div className="text-danger text-center">{error}</div>
+                }
+                {success &&
+                    <div className="text-success text-center">{success}</div>
+                }
             </form>
             <hr></hr>
             <div className="row justify-content-center my-3">

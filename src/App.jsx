@@ -10,6 +10,8 @@ const App = () => {
 	const [users, setUsers] = useState(userList);
 	const [isMember, setIsMember] = useState(true);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [error, setError] = useState('');
+	const [success, setSuccess] = useState('');
 
 	useEffect(() => {
 	}, [isLoggedIn])
@@ -22,35 +24,41 @@ const App = () => {
 		return user ? true : false;
 	};
 
+	const validatePassword = (password, confirmPassword) => {
+		return password === confirmPassword ? true : false;
+	};
+
 	const handleLogin = (username, password) => {
-		console.log('Username: ', username, 'Password: ', password)
+		setError('')
+		setSuccess('')
 		const isValid = validateUser(username, password)
 		if (isValid) {
 			setIsLoggedIn(true);
-			console.log('Login Successful!')
+			setSuccess('Login Successful!')
 		} else {
 			setIsLoggedIn(false);
-			console.log('Nice try, hacker!')
+			setError('Nice try, hacker!')
 		}
-	}
-	// left off here, need to finish up this function
+	};
+
 	const handleSignUp = (username, password, confirmPassword) => {
-		console.log('Username: ', username, 'Password: ', password, 'Confirmed Password: ', confirmPassword)
+		setError('')
+		setSuccess('')
 		const isExistingUser = validateUser(username, password);
 		if (isExistingUser) {
-			console.log('User already exists')
+			return setError('User already exists')
 		} else {
-			console.log('Welcome, newbie.')
+			validatePassword(password, confirmPassword) ? setSuccess('Welcome, newbie.') : setError('Passwords do not match.');
 		}
-	}
+	};
 
 	return (
 		<>
 			{isMember &&
-				<SignIn handleLogin={handleLogin} setIsMember={setIsMember} />
+				<SignIn handleLogin={handleLogin} setIsMember={setIsMember} error={error} success={success} />
 			}
 			{!isMember &&
-				<SignUp handleSignUp={handleSignUp} setIsMember={setIsMember} />
+				<SignUp handleSignUp={handleSignUp} setIsMember={setIsMember} error={error} success={success} />
 			}
 		</>
 	);

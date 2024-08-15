@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const SignUp = ({ handleSignUp, setIsMember }) => {
+const SignUp = ({ handleSignUp, setIsMember, error, success }) => {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -16,12 +16,13 @@ const SignUp = ({ handleSignUp, setIsMember }) => {
             setConfirmPassword(target.value);
         }
     }
+
     const signUpClick = (username, password, confirmPassword) => {
         handleSignUp(username, password, confirmPassword);
-        setUserName('')
-        setPassword('')
-        setConfirmPassword('')
     }
+
+    useEffect(() => {
+    }, [error, success]);
 
     return (
         <div className="container col-11 col-md-8 col-lg-6 border bg-light my-5">
@@ -42,6 +43,12 @@ const SignUp = ({ handleSignUp, setIsMember }) => {
                 <div className="row justify-content-center my-3">
                     <button type="button" className="btn btn-dark w-auto" onClick={() => signUpClick(username, password, confirmPassword)}>Sign Up</button>
                 </div>
+                {error &&
+                    <div className="text-danger text-center">{error}</div>
+                }
+                {success &&
+                    <div className="text-success text-center">{success}</div>
+                }
             </form>
             <hr></hr>
             <div className="row justify-content-center my-3">

@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 
 const SignUp = ({ handleSignUp, setIsMember, error, success }) => {
-    const [username, setUserName] = useState('');
-    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('')
 
     const handleChange = (target) => {
         if (target.id === 'username') {
-            setUserName(target.value);
+            setUsername(target.value);
+        }
+        if (target.id === 'email') {
+            setEmail(target.value);
         }
         if (target.id === 'password') {
             setPassword(target.value);
@@ -33,15 +37,16 @@ const SignUp = ({ handleSignUp, setIsMember, error, success }) => {
                     <input id="username" className="col-9" type="text" name="username" placeholder="Username..." value={username} onChange={(e) => handleChange(e.target)}></input>
                 </div>
                 <div className="row justify-content-center py-1">
+                    <label htmlFor="email" className="col text-end">Email: </label>
+                    <input id="email" className="col-9" type="text" name="email" placeholder="Email..." value={email} onChange={(e) => handleChange(e.target)}></input>
+                </div>
+                <div className="row justify-content-center py-1">
                     <label htmlFor="password" className="col text-end">Password: </label>
-                    <input id="password" className="col-9" type="text" name="password" placeholder="Password..." value={password} onChange={(e) => handleChange(e.target)}></input>
+                    <input id="password" className="col-9" type="password" name="password" placeholder="Password..." value={password} onChange={(e) => handleChange(e.target)}></input>
                 </div>
                 <div className="row justify-content-center py-1">
                     <label htmlFor="confirmPassword" className="col-3 text-end text-wrap">Confirm Password: </label>
-                    <input id="confirmPassword" className="col-9" type="text" name="confirmPassword" placeholder="Confirm Password..." value={confirmPassword} onChange={(e) => handleChange(e.target)}></input>
-                </div>
-                <div className="row justify-content-center my-3">
-                    <button type="button" className="btn btn-dark w-auto" onClick={() => signUpClick(username, password, confirmPassword)}>Sign Up</button>
+                    <input id="confirmPassword" className="col-9" type="password" name="confirmPassword" placeholder="Confirm Password..." value={confirmPassword} onChange={(e) => handleChange(e.target)}></input>
                 </div>
                 {error &&
                     <div className="text-danger text-center">{error}</div>
@@ -49,6 +54,9 @@ const SignUp = ({ handleSignUp, setIsMember, error, success }) => {
                 {success &&
                     <div className="text-success text-center">{success}</div>
                 }
+                <div className="row justify-content-center my-3">
+                    <button type="button" className="btn btn-dark w-auto" onClick={() => signUpClick(username, password, confirmPassword)}>Sign Up</button>
+                </div>
             </form>
             <hr></hr>
             <div className="row justify-content-center my-3">

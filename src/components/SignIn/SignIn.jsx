@@ -14,8 +14,8 @@ const SignIn = ({ handleLogin, setIsMember, error, success }) => {
     }
     const signInClick = (username, password) => {
         handleLogin(username, password);
-        setUserName('')
-        setPassword('')
+        // setUserName('')
+        // setPassword('')
     }
 
     useEffect(() => {
@@ -31,10 +31,7 @@ const SignIn = ({ handleLogin, setIsMember, error, success }) => {
                 </div>
                 <div className="row justify-content-center py-1">
                     <label htmlFor="password" className="col text-end">Password: </label>
-                    <input id="password" className="col-9" type="text" name="password" placeholder="Password..." value={password} onChange={(e) => handleChange(e.target)}></input>
-                </div>
-                <div className="row justify-content-center my-3">
-                    <button type="button" className="btn btn-dark w-auto" onClick={() => signInClick(username, password)}>Sign In</button>
+                    <input id="password" className="col-9" type="password" name="password" placeholder="Password..." value={password} onChange={(e) => handleChange(e.target)}></input>
                 </div>
                 {error &&
                     <div className="text-danger text-center">{error}</div>
@@ -42,6 +39,9 @@ const SignIn = ({ handleLogin, setIsMember, error, success }) => {
                 {success &&
                     <div className="text-success text-center">{success}</div>
                 }
+                <div className="row justify-content-center my-3">
+                    <button type="button" className="btn btn-dark w-auto" onClick={() => signInClick(username, password)}>Sign In</button>
+                </div>
             </form>
             <hr></hr>
             <div className="row justify-content-center my-3">

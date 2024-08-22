@@ -1,9 +1,13 @@
+import './dashboard.css';
+
 const DashboardButton = ({ name, image }) => {
     return (
-        <div key={name} className="card col-auto my-3">
-            <img src={image} className="img-top" height={250} width={250}></img>
-            <span className="card-text">{name}</span>
-        </div>
+        <div key={name} className="card col-12 col-sm-5 col-md-5 my-3 mx-1 btn btn-outline-dark p-0">
+            <img src={image} className="card-img img-fit" height="250px"></img>
+            <div className="card-img-overlay d-flex justify-content-center align-items-center">
+                <span className="card-text text-white text-bold fs-1">{name}</span>
+            </div>
+        </div >
     )
 }
 

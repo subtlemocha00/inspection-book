@@ -1,11 +1,11 @@
 import { cards } from './cards'
 import DashboardButton from './DashboardButton'
 
-const Dashboard = ({ username }) => {
+const Dashboard = ({ user }) => {
     console.log(cards)
     return (
         <>
-            <h1>Welcome, {username}</h1>
+            <h1>Welcome, {user.username}</h1>
             <div className="container row p-auto m-auto justify-content-center">
                 {cards.map((card) => {
                     return (

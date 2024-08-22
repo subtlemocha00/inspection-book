@@ -1,20 +1,24 @@
-import excavator_logo from './excavator_logo.png'
+import recent_job from './excavator_logo.png'
+import mileage from './mileage_a.png'
+import recent from './ongoing.png'
+import past from './past_jobs.png'
+import search from './search.png'
 
 export const cards = [
     {
-        title: 'Recent Jobs',
-        image: excavator_logo,
+        title: 'Current Job',
+        image: recent,
     },
     {
-        title: 'Recent Jobs',
-        image: excavator_logo,
+        title: 'Search Jobs',
+        image: search,
     },
     {
-        title: 'Recent Jobs',
-        image: excavator_logo,
+        title: 'Past Jobs',
+        image: past,
     },
     {
-        title: 'Recent Jobs',
-        image: excavator_logo,
-    }
+        title: 'Monthly Mileage',
+        image: mileage,
+    },
 ]

@@ -4,7 +4,7 @@ import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignIn/SignUp";
 import Dashboard from "./components/Dashboard/Dashboard";
 
-const userList = [{ username: 'user', password: 'password' }, { username: 'subtlemocha', password: '12345' }]
+const userList = [{ username: 'user', password: 'password' }, { username: 'subtlemocha', password: '12345' }, { username: '', password: '' }]
 
 const App = () => {
 
@@ -36,11 +36,14 @@ const App = () => {
 		setError('');
 		setSuccess('');
 
-
 		const isValid = validateUser(username, password)
+		// successful login
 		if (isValid) {
 			setIsLoggedIn(true);
 			setSuccess('Login Successful!');
+			const user = userList.find(user => user.username === username && user.password === password);
+			setCurrentUser(user);
+			// failed login
 		} else {
 			setIsLoggedIn(false);
 			if (!username && !password) {
@@ -78,7 +81,7 @@ const App = () => {
 				<SignUp handleSignUp={handleSignUp} setIsMember={setIsMember} error={error} success={success} />
 			}
 			{isMember && isLoggedIn &&
-				<Dashboard username='JohnJacobJingleheimerSchmidt' />
+				<Dashboard user={currentUser} />
 			}
 		</>
 	);

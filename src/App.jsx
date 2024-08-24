@@ -3,6 +3,9 @@ import "./App.css";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignIn/SignUp";
 import Dashboard from "./components/Dashboard/Dashboard";
+import { data } from './data'
+import List from "./components/Search/List";
+import { loadFromLocalStorage, saveToLocalStorage } from "./utils/storage";
 
 const userList = [{ username: 'user', password: 'password' }, { username: 'subtlemocha', password: '12345' }, { username: '', password: '' }]
 
@@ -13,15 +16,20 @@ const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState('');
-	const [currentUser, setCurrentUser] = useState({})
+	const [currentUser, setCurrentUser] = useState({});
+	const [jobList, setJobList] = useState(data);
+	const [showJobList, setShowJobList] = useState(true)
 
 	useEffect(() => {
-	}, [isLoggedIn])
+	}, [isLoggedIn]);
+
+	useEffect(() => {
+	}, [jobList]);
 
 	useEffect(() => {
 		setError('');
 		setSuccess('');
-	}, [isMember])
+	}, [isMember]);
 
 	const validateUser = (username, password) => {
 		const user = userList.find(user => user.username === username && user.password === password);
@@ -82,6 +90,9 @@ const App = () => {
 			}
 			{isMember && isLoggedIn &&
 				<Dashboard user={currentUser} />
+			}
+			{showJobList &&
+				<List items={jobList} />
 			}
 		</>
 	);

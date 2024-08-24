@@ -1,5 +1,8 @@
-const jobInfo = [
+import { v4 as uuidv4 } from 'uuid';
+
+export const data = [
     {
+        id: uuidv4(),
         number: "224001",
         name: "Garden Street Reconstruction",
         workingDays: 120,
@@ -7,9 +10,10 @@ const jobInfo = [
         startDate: "2023-04-01",
         endDate: "2023-09-30",
         city: "London",
-        work: {surface: true, sanitary: true, storm: true, watermain: true, other: null}
+        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null }
     },
     {
+        id: uuidv4(),
         number: "224002",
         name: "Riverside Drive Watermain Replacement",
         workingDays: 90,
@@ -17,9 +21,10 @@ const jobInfo = [
         startDate: "2023-05-15",
         endDate: "2023-08-15",
         city: "London",
-        work: {surface: true, sanitary: true, storm: true, watermain: true, other: null}
+        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null }
     },
     {
+        id: uuidv4(),
         number: "224003",
         name: "Elm Street Sewer Expansion",
         workingDays: 150,
@@ -27,9 +32,10 @@ const jobInfo = [
         startDate: "2023-03-01",
         endDate: "2023-10-01",
         city: "Sarnia",
-        work: {surface: true, sanitary: true, storm: true, watermain: true, other: null}
+        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null }
     },
     {
+        id: uuidv4(),
         number: "224004",
         name: "Maple Lane Resurfacing",
         workingDays: 45,
@@ -37,9 +43,10 @@ const jobInfo = [
         startDate: "2023-07-01",
         endDate: "2023-08-15",
         city: "Chatham",
-        work: {surface: true, sanitary: true, storm: true, watermain: true, other: null}
+        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null }
     },
     {
+        id: uuidv4(),
         number: "224005",
         name: "Queen's Park Redevelopment",
         workingDays: 180,
@@ -47,9 +54,10 @@ const jobInfo = [
         startDate: "2023-01-01",
         endDate: "2023-07-01",
         city: "Stratford",
-        work: {surface: true, sanitary: true, storm: true, watermain: true, other: null}
+        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null }
     },
     {
+        id: uuidv4(),
         number: "224006",
         name: "Southdale Road Improvement",
         workingDays: 200,
@@ -57,9 +65,10 @@ const jobInfo = [
         startDate: "2023-05-01",
         endDate: "2024-01-01",
         city: "Lucan",
-        work: {surface: true, sanitary: true, storm: true, watermain: true, other: null}
+        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null }
     },
     {
+        id: uuidv4(),
         number: "224007",
         name: "Weston Drive Storm Drain Installation",
         workingDays: 110,
@@ -67,9 +76,10 @@ const jobInfo = [
         startDate: "2023-04-15",
         endDate: "2023-10-15",
         city: "Petrolia",
-        work: {surface: true, sanitary: true, storm: true, watermain: true, other: null}
+        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null }
     },
     {
+        id: uuidv4(),
         number: "224008",
         name: "Northfield Drive Bridge Construction",
         workingDays: 300,
@@ -77,9 +87,10 @@ const jobInfo = [
         startDate: "2023-02-01",
         endDate: "2024-01-01",
         city: "Chatham",
-        work: {surface: true, sanitary: true, storm: true, watermain: true, other: null}
+        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null }
     },
     {
+        id: uuidv4(),
         number: "224009",
         name: "Victoria Street Revitalization",
         workingDays: 90,
@@ -87,9 +98,10 @@ const jobInfo = [
         startDate: "2023-06-01",
         endDate: "2023-09-01",
         city: "Ingersoll",
-        work: {surface: true, sanitary: true, storm: true, watermain: false, other: null}
+        work: { surface: true, sanitary: true, storm: true, watermain: false, other: null }
     },
     {
+        id: uuidv4(),
         number: "224010",
         name: "Harbour Road Sewage Treatment Upgrade",
         workingDays: 270,
@@ -97,8 +109,6 @@ const jobInfo = [
         startDate: "2023-01-15",
         endDate: "2023-10-15",
         city: "Port Frampton",
-        work: {surface: true, sanitary: true, storm: false, watermain: true, other: 'parking lot'}
+        work: { surface: true, sanitary: true, storm: false, watermain: true, other: 'parking lot' }
     }
 ];
-
-export default jobInfo;

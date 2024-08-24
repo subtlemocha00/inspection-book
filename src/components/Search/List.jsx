@@ -50,10 +50,12 @@ const List = ({ items, setItemList, removeItem }) => {
                                 <li key={item.id} className={classList} onClick={() => toggleActive(item.id)}>
                                     <div className="m-0 row">
                                         <div className="col">
-                                            <h4>{item.name}</h4>
-                                            {item.description && <p>{item.description}</p>}
-                                            {item.price && <span>${item.price}</span>}
-                                            {item.img && <img src={item.img} height={200} />}
+                                            <div className="row">
+                                                <h5 className="col-auto">{item.number}</h5>
+                                                <h5 className="col">{item.name}</h5>
+                                            </div>
+                                            <h6>{item.city}</h6>
+                                            {/* {item.img && <img src={item.img} height={200} />} */}
                                         </div>
                                         <button className={buttonClassList} onClick={() => removeItem(item.id)}>X</button>
                                     </div>

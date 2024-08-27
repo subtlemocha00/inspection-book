@@ -6,6 +6,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import { jobs } from './jobs'
 import List from "./components/Search/List";
 import { loadFromLocalStorage, saveToLocalStorage } from "./utils/storage";
+import Search from "./components/Search/SearchBar";
 
 const userList = [{ username: 'user', password: 'password' }, { username: 'subtlemocha', password: '12345' }, { username: '', password: '' }]
 
@@ -90,11 +91,12 @@ const App = () => {
 
 	const removeFromList = (id) => {
 		if (showJobList) setJobList(prevJobList => prevJobList.filter(item => item.id !== id));
-		// if (currentListType === 'items') setItemList(prevChecklist => prevChecklist.filter(item => item.id !== id));
-		// if (currentListType === 'appointments') setAppointmentList(prevChecklist => prevChecklist.filter(item => item.id !== id));
-		// if (currentListType === 'cardList') setCardList(prevChecklist => prevChecklist.filter(item => item.id !== id));
-
 	}
+
+	const handleSearchResult = (result) => {
+		console.log('Search Result:', result);
+		// Perform additional logic with the search result (e.g., display details)
+	};
 
 	return (
 		<>
@@ -104,10 +106,11 @@ const App = () => {
 			}
 			{!isMember && !isLoggedIn &&
 				<SignUp handleSignUp={handleSignUp} setIsMember={setIsMember} error={error} success={success} />
-			} */}
+			}
 			{isMember && isLoggedIn &&
 				<Dashboard user={currentUser} />
-			}
+			} */}
+			<Search data={jobList} onSearchResult={handleSearchResult} />
 			{showJobList &&
 				<List items={jobList} setItemList={setJobList} removeItem={removeFromList} />
 			}

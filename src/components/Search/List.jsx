@@ -35,32 +35,28 @@ const List = ({ items, setItemList, removeItem }) => {
                     let buttonClassList = 'btn btn-dark col-auto m-auto';
                     item.isActive ? buttonClassList = 'btn btn-light col-auto m-auto' : buttonClassList = 'btn btn-dark col-auto m-auto';
                     let cardClassList = 'card m-auto text-center m-3 col-4';
-                    return (
-                        <>
-                            {item.img ? (
-                                <li key={item.id} className={cardClassList} onClick={() => toggleActive(item.id)}>
-                                    <div className="card-body">
-                                        {item.img && <img className="card-img-top w-auto m-auto" src={item.img} height={200} width={200} />}
-                                        <h4 className="card-title w-auto">{item.name}</h4>
-                                        {item.description && <p className="card-title m-auto">{item.description}</p>}
-                                        {item.price && <span className="card-text m-auto">${item.price}</span>}
-                                        <button className={buttonClassList} onClick={() => removeItem(item.id)}>X</button>
+                    return (item.img ? (
+                        <li key={item.id} className={cardClassList} onClick={() => toggleActive(item.id)}>
+                            <div className="card-body">
+                                {item.img && <img className="card-img-top w-auto m-auto" src={item.img} height={200} width={200} />}
+                                <h4 className="card-title w-auto">{item.name}</h4>
+                                {item.description && <p className="card-title m-auto">{item.description}</p>}
+                                {/* <button className={buttonClassList} onClick={() => removeItem(item.id)}>X</button> */}
+                            </div>
+                        </li>) : (
+                        <li key={item.id} className={classList} onClick={() => toggleActive(item.id)}>
+                            <div className="m-0 row">
+                                <div className="col">
+                                    <div className="row">
+                                        <h5 className="col-auto">{item.number}</h5>
+                                        <h5 className="col">{item.name}</h5>
                                     </div>
-                                </li>) :
-                                <li key={item.id} className={classList} onClick={() => toggleActive(item.id)}>
-                                    <div className="m-0 row">
-                                        <div className="col">
-                                            <div className="row">
-                                                <h5 className="col-auto">{item.number}</h5>
-                                                <h5 className="col">{item.name}</h5>
-                                            </div>
-                                            <h6>{item.city}</h6>
-                                            {/* {item.img && <img src={item.img} height={200} />} */}
-                                        </div>
-                                        <button className={buttonClassList} onClick={() => removeItem(item.id)}>X</button>
-                                    </div>
-                                </li>}</>
-
+                                    <h6>{item.city}</h6>
+                                    {/* {item.img && <img src={item.img} height={200} />} */}
+                                </div>
+                                {/* <button className={buttonClassList} onClick={() => removeItem(item.id)}>X</button> */}
+                            </div>
+                        </li>)
                     )
                 })}
             </ul>

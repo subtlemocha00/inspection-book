@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const data = [
+export const jobs = [
     {
         id: uuidv4(),
         number: "224001",

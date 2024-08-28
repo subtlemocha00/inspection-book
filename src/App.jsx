@@ -7,6 +7,7 @@ import { jobs } from './jobs'
 import List from "./components/Search/List";
 import { loadFromLocalStorage, saveToLocalStorage } from "./utils/storage";
 import Search from "./components/Search/SearchBar";
+import { SearchResult } from "./components/Search/SearchResult";
 
 const userList = [{ username: 'user', password: 'password' }, { username: 'subtlemocha', password: '12345' }, { username: '', password: '' }]
 
@@ -19,9 +20,12 @@ const App = () => {
 	const [success, setSuccess] = useState('');
 	const [currentUser, setCurrentUser] = useState({});
 	const [jobList, setJobList] = useState(() => loadFromLocalStorage('jobList', jobs));
+	const [isJobSearched, setIsJobSearched] = useState(false);
+	const [searchResult, setSearchResult] = useState({});
 
 	// set to true to work on
-	const [showJobList, setShowJobList] = useState(true)
+	const [showJobList, setShowJobList] = useState(true);
+
 
 	useEffect(() => {
 	}, [isLoggedIn]);
@@ -95,6 +99,8 @@ const App = () => {
 
 	const handleSearchResult = (result) => {
 		console.log('Search Result:', result);
+		setSearchResult(result);
+		result ? setIsJobSearched(true) : setIsJobSearched(false);
 		// Perform additional logic with the search result (e.g., display details)
 	};
 
@@ -111,8 +117,11 @@ const App = () => {
 				<Dashboard user={currentUser} />
 			} */}
 			<Search data={jobList} onSearchResult={handleSearchResult} />
-			{showJobList &&
+			{showJobList && !isJobSearched &&
 				<List items={jobList} setItemList={setJobList} removeItem={removeFromList} />
+			}
+			{isJobSearched &&
+				<SearchResult item={searchResult} />
 			}
 		</>
 	);

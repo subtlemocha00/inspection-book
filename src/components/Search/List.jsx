@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const List = ({ items, setItemList, removeItem, handleSearchResult, handleSelection }) => {
+const List = ({ items, setItemList, showDashboard, showJobList, handleSearchResult, handleSelection }) => {
     const [listItems, setListItems] = useState(items.map(item => ({
         ...item,
         isActive: item.isActive !== undefined ? item.isActive : false
@@ -13,6 +13,10 @@ const List = ({ items, setItemList, removeItem, handleSearchResult, handleSelect
         })));
     }, [items]);
 
+    const backButton = () => {
+        showJobList(false);
+        showDashboard(true);
+    }
     // const toggleActive = (key) => {
     //     setListItems(prevItems =>
     //         prevItems.map((item) =>
@@ -29,12 +33,13 @@ const List = ({ items, setItemList, removeItem, handleSearchResult, handleSelect
 
     return (
         <div className="container p-0">
+            <button className="btn btn-dark col-auto m-auto" onClick={() => backButton()}>Back</button>
             <ul className="list-group">
                 {listItems.map((item) => {
                     let classList = 'list-group-item'
                     item.isActive ? classList = 'list-group-item bg-dark border-0 ' + 'active' : classList = 'list-group-item bg-light border-0';
-                    let buttonClassList = 'btn btn-dark col-auto m-auto';
-                    item.isActive ? buttonClassList = 'btn btn-light col-auto m-auto' : buttonClassList = 'btn btn-dark col-auto m-auto';
+                    {/* let buttonClassList = 'btn btn-dark col-auto m-auto';
+                    item.isActive ? buttonClassList = 'btn btn-light col-auto m-auto' : buttonClassList = 'btn btn-dark col-auto m-auto'; */}
                     let cardClassList = 'card m-auto text-center m-3 col-4';
                     return (item.img ? (
                         <li key={item.id} className={cardClassList} onClick={() => toggleActive(item.id)}>
@@ -52,9 +57,7 @@ const List = ({ items, setItemList, removeItem, handleSearchResult, handleSelect
                                         <h5 className="col">{item.name}</h5>
                                     </div>
                                     <h6>{item.city}</h6>
-                                    {/* {item.img && <img src={item.img} height={200} />} */}
                                 </div>
-                                {/* <button className={buttonClassList} onClick={() => removeItem(item.id)}>X</button> */}
                             </div>
                         </li>)
                     )

@@ -19,14 +19,13 @@ const App = () => {
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState('');
 	const [currentUser, setCurrentUser] = useState({});
+	const [showDashboard, setShowDashboard] = useState(false);
 	const [jobList, setJobList] = useState(() => loadFromLocalStorage('jobList', jobs));
+	const [jobDisplay, setJobDisplay] = useState(jobList)
 	const [isJobSearched, setIsJobSearched] = useState(false);
 	const [searchResult, setSearchResult] = useState({});
 	const [isJobSelected, setIsJobSelected] = useState(false);
-
-
-	// set to true to work on
-	const [showJobList, setShowJobList] = useState(true);
+	const [showJobList, setShowJobList] = useState(false);
 
 
 	useEffect(() => {
@@ -45,6 +44,9 @@ const App = () => {
 
 	useEffect(() => {
 	}, [isJobSelected]);
+
+	useEffect(() => {
+	}, [showJobList]);
 
 	// saves list items to localStorage
 	useEffect(() => {
@@ -70,6 +72,7 @@ const App = () => {
 		if (isValid) {
 			setIsLoggedIn(true);
 			setSuccess('Login Successful!');
+			setShowDashboard(true);
 			const user = userList.find(user => user.username === username && user.password === password);
 			setCurrentUser(user);
 			// failed login
@@ -106,33 +109,32 @@ const App = () => {
 	}
 
 	const handleSearchResult = useCallback((result) => {
-		console.log('Search Result:', result);
 		setIsJobSearched(true);
-		setJobList(result);
-	}, [setIsJobSearched, setJobList]);
+		setJobDisplay(result);
+	}, [setIsJobSearched, setJobDisplay]);
 
 	const handleSelection = (id) => {
 		setIsJobSelected(true);
 		const results = jobList.find((job) => id === job.id);
-		console.log(results)
 		setSearchResult(jobList.find((job) => id === job.id));
 	}
 
 	return (
 		<>
-			{/* Uncomment for sign in/sign up form */}
-			{/* {isMember && !isLoggedIn &&
+			{isMember && !isLoggedIn &&
 				<SignIn handleLogin={handleLogin} setIsMember={setIsMember} error={error} success={success} />
 			}
 			{!isMember && !isLoggedIn &&
 				<SignUp handleSignUp={handleSignUp} setIsMember={setIsMember} error={error} success={success} />
 			}
-			{isMember && isLoggedIn &&
-				<Dashboard user={currentUser} />
-			} */}
-			<Search data={jobList} onSearchResult={handleSearchResult} />
+			{showDashboard &&
+				<Dashboard user={currentUser} showJobList={setShowJobList} showDashboard={setShowDashboard} />
+			}
 			{showJobList && !isJobSelected &&
-				<List items={jobList} setItemList={setJobList} removeItem={removeFromList} handleSearchResult={handleSearchResult} handleSelection={handleSelection} />
+				<>
+					<Search data={jobList} onSearchResult={handleSearchResult} />
+					<List items={jobDisplay} setItemList={setJobList} handleSearchResult={handleSearchResult} handleSelection={handleSelection} showDashboard={setShowDashboard} showJobList={setShowJobList} />
+				</>
 			}
 			{isJobSelected &&
 				<SearchResult item={searchResult} isJobSelected={setIsJobSelected} />

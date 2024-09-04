@@ -12,7 +12,7 @@ const SearchBar = ({ data, onSearchResult }) => {
     // useEffect to filter results based on search input
     useEffect(() => {
         if (searchInput.trim() !== '') {
-            // Filter the data array based on the search input (case-insensitive)
+            // Filter the data array based on the search input
             const filteredResults = data.filter(item =>
                 item.number.toString().toLowerCase().includes(searchInput.toLowerCase().trim())
             );

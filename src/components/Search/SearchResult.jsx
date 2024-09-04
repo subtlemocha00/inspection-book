@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 export const SearchResult = ({ item, isJobSelected }) => {
 
     let cardClassList = 'card m-auto text-center m-3 col-4 border btn btn-dark';
-    console.log(item)
     return (
         <div className="container">
             <button className="btn btn-dark" onClick={() => isJobSelected(false)}>BACK</button>

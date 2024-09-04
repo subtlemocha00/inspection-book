@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignIn/SignUp";
@@ -22,6 +22,8 @@ const App = () => {
 	const [jobList, setJobList] = useState(() => loadFromLocalStorage('jobList', jobs));
 	const [isJobSearched, setIsJobSearched] = useState(false);
 	const [searchResult, setSearchResult] = useState({});
+	const [isJobSelected, setIsJobSelected] = useState(false);
+
 
 	// set to true to work on
 	const [showJobList, setShowJobList] = useState(true);
@@ -37,6 +39,12 @@ const App = () => {
 		setError('');
 		setSuccess('');
 	}, [isMember]);
+
+	useEffect(() => {
+	}, [searchResult]);
+
+	useEffect(() => {
+	}, [isJobSelected]);
 
 	// saves list items to localStorage
 	useEffect(() => {
@@ -97,12 +105,18 @@ const App = () => {
 		if (showJobList) setJobList(prevJobList => prevJobList.filter(item => item.id !== id));
 	}
 
-	const handleSearchResult = (result) => {
+	const handleSearchResult = useCallback((result) => {
 		console.log('Search Result:', result);
-		setSearchResult(result);
-		result ? setIsJobSearched(true) : setIsJobSearched(false);
-		// Perform additional logic with the search result (e.g., display details)
-	};
+		setIsJobSearched(true);
+		setJobList(result);
+	}, [setIsJobSearched, setJobList]);
+
+	const handleSelection = (id) => {
+		setIsJobSelected(true);
+		const results = jobList.find((job) => id === job.id);
+		console.log(results)
+		setSearchResult(jobList.find((job) => id === job.id));
+	}
 
 	return (
 		<>
@@ -117,11 +131,11 @@ const App = () => {
 				<Dashboard user={currentUser} />
 			} */}
 			<Search data={jobList} onSearchResult={handleSearchResult} />
-			{showJobList && !isJobSearched &&
-				<List items={jobList} setItemList={setJobList} removeItem={removeFromList} />
+			{showJobList && !isJobSelected &&
+				<List items={jobList} setItemList={setJobList} removeItem={removeFromList} handleSearchResult={handleSearchResult} handleSelection={handleSelection} />
 			}
-			{isJobSearched &&
-				<SearchResult item={searchResult} />
+			{isJobSelected &&
+				<SearchResult item={searchResult} isJobSelected={setIsJobSelected} />
 			}
 		</>
 	);

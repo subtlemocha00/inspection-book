@@ -1,21 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SearchBar = ({ data, onSearchResult }) => {
-    const [searchInput, setSearchInput] = useState('');
 
-    const handleSearch = () => {
-        // Perform the search using the id property
-        const result = data.find(item => item.number === searchInput.trim());
-        if (result) {
-            onSearchResult(result);
-        } else {
-            console.log('No item found with the provided ID.');
-        }
-    };
+    const [jobList, setJobList] = useState(data);
+    const [searchInput, setSearchInput] = useState('');
 
     const handleInputChange = (e) => {
         setSearchInput(e.target.value);
     };
+
+    // useEffect to filter results based on search input
+    useEffect(() => {
+        if (searchInput.trim() !== '') {
+            // Filter the data array based on the search input (case-insensitive)
+            const filteredResults = data.filter(item =>
+                item.number.toString().toLowerCase().includes(searchInput.toLowerCase().trim())
+            );
+            onSearchResult(filteredResults);
+        } else {
+            // If the search input is empty, return all data
+            onSearchResult(data);
+        }
+    }, [searchInput, data, onSearchResult]);
 
     return (
         <div className="input-group mb-3">
@@ -26,13 +32,6 @@ const SearchBar = ({ data, onSearchResult }) => {
                 value={searchInput}
                 onChange={handleInputChange}
             />
-            <button
-                className="btn btn-dark w-auto"
-                type="button"
-                onClick={handleSearch}
-            >
-                Search
-            </button>
         </div>
     );
 };

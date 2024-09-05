@@ -8,6 +8,7 @@ import List from "./components/Search/List";
 import { loadFromLocalStorage, saveToLocalStorage } from "./utils/storage";
 import Search from "./components/Search/SearchBar";
 import { SearchResult } from "./components/Search/SearchResult";
+import JobPage from "./components/Display/JobPage";
 
 const userList = [{ username: 'user', password: 'password' }, { username: 'subtlemocha', password: '12345' }, { username: '', password: '' }]
 
@@ -121,6 +122,7 @@ const App = () => {
 
 	return (
 		<>
+			<JobPage item={searchResult} />
 			{isMember && !isLoggedIn &&
 				<SignIn handleLogin={handleLogin} setIsMember={setIsMember} error={error} success={success} />
 			}

@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 
-export const SearchResult = ({ item, isJobSelected }) => {
+export const SearchResult = ({ item, isJobSelected, openJob, showJobList }) => {
 
     let cardClassList = 'card m-auto text-center m-3 col-4 border btn btn-dark';
+
+    const handleJobOpen = () => {
+        openJob(true);
+        isJobSelected(false);
+        showJobList(false);
+    }
+
     return (
         <div className="container">
             <button className="btn btn-dark" onClick={() => isJobSelected(false)}>BACK</button>
-            <div className="container p-0">
+            <div className="container p-0" onClick={() => handleJobOpen(item.id)}>
                 <div key={item.id} className={cardClassList} >
                     <div className="card-body">
                         <h4 className="card-title w-auto">{item.name}</h4>

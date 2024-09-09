@@ -1,4 +1,9 @@
+import { useEffect } from "react";
+
 const Header = ({ job }) => {
+    useEffect(() => {
+        console.log(job)
+    }, [job])
     return (
         <div className="container">
             <div className="">

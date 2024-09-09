@@ -1,0 +1,50 @@
+const users = 	[
+			{
+				username: String,
+				password: hashed String?,
+				firstName: String,
+				lastName: String,
+			},
+		]
+
+const jobs = [
+	{
+		id: uuidv4(),
+		number: Number,
+		name: String,
+		workingDays: Number,
+		currentWorkingDay: Number,
+		startDate: Date,
+		endDate: Date,
+		city: String,
+		work:	{
+				surface: Boolean,
+				sanitary: Boolean,
+				storm: Boolean,
+				watermain: Boolean,
+			},
+		description: String,
+		notes:	[
+				{	date: String,
+					weather: {
+								conditions: ,
+								high (C): Number,
+								low (C): Number,
+						},
+					crew:	{
+							foreman: Number,
+							labourers: Number,
+							operators: Number,
+						},
+					equipment:	Array,
+					entries: [
+							{
+								time: String,
+								comment: String,
+							}
+						],
+				},
+			],
+]
+
+skincartinhat

@@ -24,6 +24,7 @@ const App = () => {
 	const [jobList, setJobList] = useState(() => loadFromLocalStorage('jobList', jobs));
 	const [jobDisplay, setJobDisplay] = useState(jobList)
 	const [isJobSearched, setIsJobSearched] = useState(false);
+	const [isJobOpen, setIsJobOpen] = useState(false);
 	const [searchResult, setSearchResult] = useState({});
 	const [isJobSelected, setIsJobSelected] = useState(false);
 	const [showJobList, setShowJobList] = useState(false);
@@ -32,8 +33,8 @@ const App = () => {
 	useEffect(() => {
 	}, [isLoggedIn]);
 
-	useEffect(() => {
-	}, [jobList]);
+	// useEffect(() => {
+	// }, [jobList]);
 
 	useEffect(() => {
 		setError('');
@@ -105,10 +106,6 @@ const App = () => {
 		}
 	};
 
-	const removeFromList = (id) => {
-		if (showJobList) setJobList(prevJobList => prevJobList.filter(item => item.id !== id));
-	}
-
 	const handleSearchResult = useCallback((result) => {
 		setIsJobSearched(true);
 		setJobDisplay(result);
@@ -122,7 +119,6 @@ const App = () => {
 
 	return (
 		<>
-			<JobPage item={searchResult} />
 			{isMember && !isLoggedIn &&
 				<SignIn handleLogin={handleLogin} setIsMember={setIsMember} error={error} success={success} />
 			}
@@ -139,7 +135,10 @@ const App = () => {
 				</>
 			}
 			{isJobSelected &&
-				<SearchResult item={searchResult} isJobSelected={setIsJobSelected} />
+				<SearchResult item={searchResult} isJobSelected={setIsJobSelected} openJob={setIsJobOpen} showJobList={setShowJobList} />
+			}
+			{isJobOpen &&
+				<JobPage item={searchResult} />
 			}
 		</>
 	);

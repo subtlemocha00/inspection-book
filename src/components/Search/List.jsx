@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const List = ({ items, setItemList, showDashboard, showJobList, handleSearchResult, handleSelection }) => {
+
     const [listItems, setListItems] = useState(items.map(item => ({
         ...item,
         isActive: item.isActive !== undefined ? item.isActive : false
@@ -17,19 +18,6 @@ const List = ({ items, setItemList, showDashboard, showJobList, handleSearchResu
         showJobList(false);
         showDashboard(true);
     }
-    // const toggleActive = (key) => {
-    //     setListItems(prevItems =>
-    //         prevItems.map((item) =>
-    //             item.id === key ? { ...item, isActive: !item.isActive } : item
-    //         )
-    //     );
-    //     setItemList(prevItems =>
-    //         prevItems.map((item) =>
-    //             item.id === key ? { ...item, isActive: !item.isActive } : item
-    //         )
-    //     );
-    //     handleSearchResult(item.id)
-    // }
 
     return (
         <div className="container p-0">
@@ -41,14 +29,7 @@ const List = ({ items, setItemList, showDashboard, showJobList, handleSearchResu
                     {/* let buttonClassList = 'btn btn-dark col-auto m-auto';
                     item.isActive ? buttonClassList = 'btn btn-light col-auto m-auto' : buttonClassList = 'btn btn-dark col-auto m-auto'; */}
                     let cardClassList = 'card m-auto text-center m-3 col-4';
-                    return (item.img ? (
-                        <li key={item.id} className={cardClassList} onClick={() => toggleActive(item.id)}>
-                            <div className="card-body">
-                                {item.img && <img className="card-img-top w-auto m-auto" src={item.img} height={200} width={200} />}
-                                <h4 className="card-title w-auto">{item.name}</h4>
-                                {item.description && <p className="card-title m-auto">{item.description}</p>}
-                            </div>
-                        </li>) : (
+                    return (
                         <li key={item.id} className={classList} onClick={() => handleSelection(item.id)}>
                             <div className="m-0 row">
                                 <div className="col">
@@ -59,7 +40,7 @@ const List = ({ items, setItemList, showDashboard, showJobList, handleSearchResu
                                     <h6>{item.city}</h6>
                                 </div>
                             </div>
-                        </li>)
+                        </li>
                     )
                 })}
             </ul>

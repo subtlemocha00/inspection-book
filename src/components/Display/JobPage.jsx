@@ -5,16 +5,18 @@ import Notes from "./Notes";
 import { entryList } from "./entryList";
 
 
-const JobPage = (item) => {
+const JobPage = ({ item }) => {
     const [entries, setEntries] = useState(entryList);
-    // useEffect(() => { }, [entries]);
     console.log(entries)
     return (
-        <form className="container">
-            <Header job={item} />
-            <Crew />
-            <Notes entries={entries} />
-        </form>
+        <>
+            <button className="btn btn-dark" >BACK</button>
+            <form className="container">
+                <Header job={item} />
+                <Crew />
+                <Notes entries={entries} />
+            </form>
+        </>
     )
 }
 

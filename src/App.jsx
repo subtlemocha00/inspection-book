@@ -29,12 +29,16 @@ const App = () => {
 	const [isJobSelected, setIsJobSelected] = useState(false);
 	const [showJobList, setShowJobList] = useState(false);
 
+	useEffect(() => {
+		fetchJobs();
+	}, [])
+
+	const fetchJobs = () => {
+
+	}
 
 	useEffect(() => {
 	}, [isLoggedIn]);
-
-	// useEffect(() => {
-	// }, [jobList]);
 
 	useEffect(() => {
 		setError('');
@@ -54,7 +58,6 @@ const App = () => {
 	useEffect(() => {
 		saveToLocalStorage('jobList', jobList)
 	}, [jobList]);
-
 
 	const validateUser = (username, password) => {
 		const user = userList.find(user => user.username === username && user.password === password);
@@ -112,9 +115,9 @@ const App = () => {
 	}, [setIsJobSearched, setJobDisplay]);
 
 	const handleSelection = (id) => {
-		setIsJobSelected(true);
 		const results = jobList.find((job) => id === job.id);
-		setSearchResult(jobList.find((job) => id === job.id));
+		setSearchResult(results);
+		setIsJobSelected(true);
 	}
 
 	return (

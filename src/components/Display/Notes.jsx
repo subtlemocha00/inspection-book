@@ -8,12 +8,12 @@ const Notes = ({ entries }) => {
 
     const addToList = (newItem) => {
         newItem.id = uuidv4();
-        console.log(newItem)
+        console.log(newItem);
         setEntryList(prevEntryList => [...prevEntryList, newItem]);
     }
 
     const removeFromList = (id) => {
-        console.log(id)
+        console.log(id);
         setEntryList(prevEntryList => prevEntryList.filter(item => item.id !== id));
     }
 

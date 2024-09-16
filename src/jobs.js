@@ -10,7 +10,11 @@ export const jobs = [
         startDate: "2023-04-01",
         endDate: "2023-09-30",
         city: "London",
-        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null },
+        surface: true,
+        sanitary: true,
+        storm: true,
+        watermain: true,
+        other: null,
         description: "Full reconstruction of Garden Street including replacement of sanitary and storm sewers, watermain, and resurfacing of roadway."
     },
     {
@@ -22,7 +26,11 @@ export const jobs = [
         startDate: "2023-05-15",
         endDate: "2023-08-15",
         city: "London",
-        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null },
+        surface: true,
+        sanitary: true,
+        storm: true,
+        watermain: true,
+        other: null,
         description: "Replacement of the existing watermain along Riverside Drive, including new sanitary and storm sewers, with full roadway restoration."
     },
     {
@@ -34,7 +42,11 @@ export const jobs = [
         startDate: "2023-03-01",
         endDate: "2023-10-01",
         city: "Sarnia",
-        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null },
+        surface: true,
+        sanitary: true,
+        storm: true,
+        watermain: true,
+        other: null,
         description: "Expansion of the sewer system on Elm Street, involving new sanitary and storm sewers, watermain installation, and road resurfacing."
     },
     {
@@ -46,7 +58,11 @@ export const jobs = [
         startDate: "2023-07-01",
         endDate: "2023-08-15",
         city: "Chatham",
-        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null },
+        surface: true,
+        sanitary: true,
+        storm: true,
+        watermain: true,
+        other: null,
         description: "Resurfacing of Maple Lane, including minor storm sewer repairs and watermain replacement."
     },
     {
@@ -58,7 +74,11 @@ export const jobs = [
         startDate: "2023-01-01",
         endDate: "2023-07-01",
         city: "Stratford",
-        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null },
+        surface: true,
+        sanitary: true,
+        storm: true,
+        watermain: true,
+        other: null,
         description: "Redevelopment of Queen's Park including replacement of sanitary sewers, storm sewers, and watermain, with extensive landscaping and pathway construction."
     },
     {
@@ -70,7 +90,11 @@ export const jobs = [
         startDate: "2023-05-01",
         endDate: "2024-01-01",
         city: "Lucan",
-        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null },
+        surface: true,
+        sanitary: true,
+        storm: true,
+        watermain: true,
+        other: null,
         description: "Major improvements to Southdale Road, including widening the roadway, replacing storm and sanitary sewers, and upgrading the watermain."
     },
     {
@@ -82,7 +106,11 @@ export const jobs = [
         startDate: "2023-04-15",
         endDate: "2023-10-15",
         city: "Petrolia",
-        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null },
+        surface: true,
+        sanitary: true,
+        storm: true,
+        watermain: true,
+        other: null,
         description: "Installation of a new storm drain system along Weston Drive, with associated watermain upgrades and road resurfacing."
     },
     {
@@ -94,7 +122,11 @@ export const jobs = [
         startDate: "2023-02-01",
         endDate: "2024-01-01",
         city: "Chatham",
-        work: { surface: true, sanitary: true, storm: true, watermain: true, other: null },
+        surface: true,
+        sanitary: true,
+        storm: true,
+        watermain: true,
+        other: null,
         description: "Construction of a new bridge on Northfield Drive, including associated roadworks, stormwater management, and utility relocations."
     },
     {
@@ -106,7 +138,11 @@ export const jobs = [
         startDate: "2023-06-01",
         endDate: "2023-09-01",
         city: "Ingersoll",
-        work: { surface: true, sanitary: true, storm: true, watermain: false, other: null },
+        surface: true,
+        sanitary: true,
+        storm: true,
+        watermain: false,
+        other: null,
         description: "Revitalization of Victoria Street, including road resurfacing, storm sewer upgrades, and improvements to pedestrian areas."
     },
     {
@@ -118,7 +154,11 @@ export const jobs = [
         startDate: "2023-01-15",
         endDate: "2023-10-15",
         city: "Port Frampton",
-        work: { surface: true, sanitary: true, storm: false, watermain: true, other: 'parking lot' },
+        surface: true,
+        sanitary: true,
+        storm: false,
+        watermain: true,
+        other: 'parking lot',
         description: "Upgrade of sewage treatment facilities on Harbour Road, including installation of new sanitary sewers, watermain, and a new parking lot."
     }
 ];

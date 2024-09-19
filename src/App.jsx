@@ -1,14 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignIn/SignUp";
 import Dashboard from "./components/Dashboard/Dashboard";
-import { jobs } from './jobs'
+// import { jobs } from './jobs'
 import List from "./components/Search/List";
 import { loadFromLocalStorage, saveToLocalStorage } from "./utils/storage";
 import Search from "./components/Search/SearchBar";
 import { SearchResult } from "./components/Search/SearchResult";
 import JobPage from "./components/Display/JobPage";
+import axios from "axios";
 
 const userList = [{ username: 'user', password: 'password' }, { username: 'subtlemocha', password: '12345' }, { username: '', password: '' }]
 
@@ -21,7 +23,7 @@ const App = () => {
 	const [success, setSuccess] = useState('');
 	const [currentUser, setCurrentUser] = useState({});
 	const [showDashboard, setShowDashboard] = useState(false);
-	const [jobList, setJobList] = useState(() => loadFromLocalStorage('jobList', jobs));
+	const [jobList, setJobList] = useState([]);
 	const [jobDisplay, setJobDisplay] = useState(jobList)
 	const [isJobSearched, setIsJobSearched] = useState(false);
 	const [isJobOpen, setIsJobOpen] = useState(false);
@@ -30,12 +32,17 @@ const App = () => {
 	const [showJobList, setShowJobList] = useState(false);
 
 	useEffect(() => {
-		fetchJobs();
+		const fetchProjects = async () => {
+			try {
+				const response = await axios.get('http://localhost:5000/projects')
+				setJobList(response.data)
+				console.log(response.data)
+			} catch (err) {
+				console.error('Error fetching projects', err);
+			}
+		}
+		fetchProjects();
 	}, [])
-
-	const fetchJobs = () => {
-
-	}
 
 	useEffect(() => {
 	}, [isLoggedIn]);

@@ -19,7 +19,7 @@
     "pg": "^8.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.26.2",
+    "react-router-dom": "^6.30.3",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

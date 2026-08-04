@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 const SearchBar = ({ data, onSearchResult }) => {
 
-    const [jobList, setJobList] = useState(data);
     const [searchInput, setSearchInput] = useState('');
 
     const handleInputChange = (e) => {

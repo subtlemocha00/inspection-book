@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignIn/SignUp";
 import Dashboard from "./components/Dashboard/Dashboard";
 // import { jobs } from './jobs'
 import List from "./components/Search/List";
-import { loadFromLocalStorage, saveToLocalStorage } from "./utils/storage";
+import { saveToLocalStorage } from "./utils/storage";
 import Search from "./components/Search/SearchBar";
 import { SearchResult } from "./components/Search/SearchResult";
 import JobPage from "./components/Display/JobPage";
@@ -16,7 +15,6 @@ const userList = [{ username: 'user', password: 'password' }, { username: 'subtl
 
 const App = () => {
 
-	const [users, setUsers] = useState(userList);
 	const [isMember, setIsMember] = useState(true);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [error, setError] = useState('');
@@ -25,7 +23,7 @@ const App = () => {
 	const [showDashboard, setShowDashboard] = useState(false);
 	const [jobList, setJobList] = useState([]);
 	const [jobDisplay, setJobDisplay] = useState(jobList)
-	const [isJobSearched, setIsJobSearched] = useState(false);
+	const [, setIsJobSearched] = useState(false);
 	const [isJobOpen, setIsJobOpen] = useState(false);
 	const [searchResult, setSearchResult] = useState({});
 	const [isJobSelected, setIsJobSelected] = useState(false);
@@ -47,10 +45,13 @@ const App = () => {
 	useEffect(() => {
 	}, [isLoggedIn]);
 
-	useEffect(() => {
+	// Switching between the sign-in and sign-up forms clears any stale
+	// validation messages left over from the other form.
+	const switchMemberMode = useCallback((member) => {
+		setIsMember(member);
 		setError('');
 		setSuccess('');
-	}, [isMember]);
+	}, []);
 
 	useEffect(() => {
 	}, [searchResult]);
@@ -130,10 +131,10 @@ const App = () => {
 	return (
 		<>
 			{isMember && !isLoggedIn &&
-				<SignIn handleLogin={handleLogin} setIsMember={setIsMember} error={error} success={success} />
+				<SignIn handleLogin={handleLogin} setIsMember={switchMemberMode} error={error} success={success} />
 			}
 			{!isMember && !isLoggedIn &&
-				<SignUp handleSignUp={handleSignUp} setIsMember={setIsMember} error={error} success={success} />
+				<SignUp handleSignUp={handleSignUp} setIsMember={switchMemberMode} error={error} success={success} />
 			}
 			{showDashboard &&
 				<Dashboard user={currentUser} showJobList={setShowJobList} showDashboard={setShowDashboard} />

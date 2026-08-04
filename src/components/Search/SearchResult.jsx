@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 export const SearchResult = ({ item, isJobSelected, openJob, showJobList }) => {
 
     let cardClassList = 'card m-auto text-center m-3 col-4 border btn btn-dark';

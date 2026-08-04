@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddItem = ({ addItem, currentListType }) => {
+const AddItem = ({ addItem }) => {
 
     const [titleValue, setTitleValue] = useState('');
     const [descriptionValue, setDescriptionValue] = useState('');

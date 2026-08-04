@@ -1,0 +1,51 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 10
+    # Packages that must move in lockstep are grouped so a single PR carries a
+    # coherent, installable tree. Split across PRs, peer-dependency ranges
+    # conflict and neither PR can merge on its own.
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+      eslint:
+        patterns:
+          - "eslint"
+          - "@eslint/*"
+          - "eslint-plugin-*"
+          - "globals"
+      testing:
+        patterns:
+          - "@testing-library/*"
+          - "vitest"
+          - "@vitest/*"
+          - "jsdom"
+      vite:
+        patterns:
+          - "vite"
+          - "@vitejs/*"
+      server:
+        patterns:
+          - "express"
+          - "cors"
+          - "pg"
+          - "dotenv"
+      # Everything else: routine minor/patch bumps in one low-risk PR.
+      misc-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
